@@ -23,9 +23,9 @@ func scan(host string, port int, wg *sync.WaitGroup) {
 		return
 	}
 
-	fmt.Println(connection.RemoteAddr().String(), "is open")
+	defer connection.Close()
 
-	connection.Close()
+	fmt.Println(connection.RemoteAddr().String(), "is open")
 }
 
 func validate(host string) bool {
@@ -68,7 +68,7 @@ func main() {
 
 	var wg sync.WaitGroup
 
-	for port := range make([]int, MaxRangePorts) {
+	for port := 0; port < MaxRangePorts; port++ {
 		wg.Add(1)
 		go scan(address, port, &wg)
 	}
