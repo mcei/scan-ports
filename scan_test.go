@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-// TestValidate calls validate, checking
+// TestValidate calls Validate, checking
 // for a valid return value.
 func TestValidate(t *testing.T) {
 	cases := []struct {
@@ -22,7 +22,7 @@ func TestValidate(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			got := validate(c.input)
+			got := Validate(c.input)
 			if got != c.want {
 				t.Errorf(errorFmt, c.want, got, c.input)
 			}
