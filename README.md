@@ -1,4 +1,4 @@
-[![Go](https://github.com/mcei/scan-ports/actions/workflows/go.yml/badge.svg)](https://github.com/mcei/scan-ports/actions/workflows/go.yml)
+[![Go](https://github.com/mcei/scan-ports/actions/workflows/go.yml/badge.svg)](https://github.com/mcei/scan-ports/actions/workflows/go.yml) [![GoDoc](https://godoc.org/github.com/mcei/scan-ports?status.svg)](https://godoc.org/github.com/mcei/scan-ports) [![Go Report Card](https://goreportcard.com/badge/github.com/mcei/scan-ports)](https://goreportcard.com/report/github.com/mcei/scan-ports)
 
 The program will scan system ports of range 0-1023 on a host specified
 
