@@ -13,6 +13,7 @@ const (
 	MaxRangePorts = 1024
 )
 
+// scan port on a host address specified
 func scan(host string, port int, wg *sync.WaitGroup) {
 	defer wg.Done()
 
@@ -28,10 +29,8 @@ func scan(host string, port int, wg *sync.WaitGroup) {
 	fmt.Println(connection.RemoteAddr().String(), "is open")
 }
 
+// validate IP or host address
 func validate(host string) bool {
-
-	// Verify if IP or host address is valid
-
 	if _, err := net.LookupIP(host); err == nil {
 		return true
 	}
