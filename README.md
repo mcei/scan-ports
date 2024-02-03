@@ -1,4 +1,4 @@
-The program will scan ports of range 0-1024 on a host specified
+The program will scan system ports of range 0-1023 on a host specified
 
 Usage: 
 
