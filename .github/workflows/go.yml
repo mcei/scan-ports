@@ -34,6 +34,6 @@ jobs:
 
     - name: Publish doc to go.dev packages
       run: |
-        git pull
+        git fetch && git pull
         export latest="$(git describe --tags `git rev-list --tags --max-count=1`)"
         curl https://proxy.golang.org/github.com/mcei/scan-ports/@v/$latest.info
