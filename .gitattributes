@@ -1,3 +1,4 @@
+.*      export-ignore
 *.md    export-ignore
 *.mod   export-ignore
 *.yml   export-ignore
