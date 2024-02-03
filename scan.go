@@ -1,3 +1,4 @@
+// A tiny console application to scan system ports
 package main
 
 import (
@@ -13,8 +14,8 @@ const (
 	MaxRangePorts = 1024
 )
 
-// scan port on a host address specified
-func scan(host string, port int, wg *sync.WaitGroup) {
+// Scan port on a host address specified
+func Scan(host string, port int, wg *sync.WaitGroup) {
 	defer wg.Done()
 
 	address := fmt.Sprintf("%s:%d", host, port)
@@ -29,12 +30,14 @@ func scan(host string, port int, wg *sync.WaitGroup) {
 	fmt.Println(connection.RemoteAddr().String(), "is open")
 }
 
-// validate IP or host address
-func validate(host string) bool {
+// Validate IP or hostname using local resolver
+func Validate(host string) bool {
+	// First validate string as an IP
 	if _, err := net.LookupIP(host); err == nil {
 		return true
 	}
 
+	// Then validate string as a hostname
 	if _, err := net.LookupHost(host); err == nil {
 		return true
 	}
@@ -45,23 +48,20 @@ func validate(host string) bool {
 func main() {
 	usage := `Example usage:
 	./scan 192.168.0.1
+	./scan localhost
 	./scan scanme.nmap.org
 	`
 	args := os.Args
 	if len(args) <= 1 {
 		fmt.Println(usage)
-		fmt.Println("Address expected")
-
 		os.Exit(1)
 	}
 
 	address := args[1]
 
-	ok := validate(address)
-	if !ok {
+	if ok := Validate(address); !ok {
 		fmt.Println(usage)
 		fmt.Println("Invalid host address:", address)
-
 		os.Exit(1)
 	}
 
@@ -69,7 +69,7 @@ func main() {
 
 	for port := 0; port < MaxRangePorts; port++ {
 		wg.Add(1)
-		go scan(address, port, &wg)
+		go Scan(address, port, &wg)
 	}
 
 	wg.Wait()
