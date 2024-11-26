@@ -11,7 +11,7 @@ import (
 
 const (
 	maxRangePorts = 1024
-	usage = `Example usage:
+	usage         = `Example usage:
 	./scan 192.168.0.1
 	./scan localhost
 	./scan scanme.nmap.org
