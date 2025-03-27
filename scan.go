@@ -26,7 +26,7 @@ var dialer = &net.Dialer{
 // Scan port on a host address specified
 func Scan(host string, port int, wg *sync.WaitGroup) {
 	defer wg.Done()
-	address := fmt.Sprintf("%s:%d", host, port)
+	address := net.JoinHostPort(host, fmt.Sprintf("%d", port))
 	connection, err := dialer.Dial("tcp", address)
 	if err != nil {
 		return
